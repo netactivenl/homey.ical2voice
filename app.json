@@ -1,0 +1,73 @@
+{
+  "id": "nl.netactive.homey.ical2voice",
+  "version": "0.1.0",
+  "compatibility": "0.x || 1.x",
+  "name": {
+    "en": "iCalendar to Voice",
+    "nl": "iCalendar to Voice"
+  },
+  "category": [ "internet" ],
+  "description": {
+    "en": "This app adds flow cards that enable Homey to announce your (iCal) appointments",
+    "nl": "Deze app voegt flow kaarten toe die Homey in staat stellen je (iCal) afspraken aan te kondigen"
+  },
+  "author": {
+    "name": "Net@ctive"
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "Raymond Brink",
+        "email": "raymond@netactive.nl"
+      }
+    ]
+  },
+  "images": {
+    "small": "assets/images/small.png",
+    "large": "assets/images/large.png"
+  },
+  "permissions": [
+    "homey:manager:speech-output",
+    "homey:manager:ledring"
+  ],
+  "speech": [ ],
+  "flow": {
+    "actions": [
+      {
+        "id": "todays_schedule",
+        "title": {
+          "en": "All your appointments for today",
+          "nl": "Al je afspraken voor vandaag"
+        }
+      },
+      {
+        "id": "todays_remaining_schedule",
+        "title": {
+          "en": "Your appointments later today",
+          "nl": "Je afspraken later vandaag"
+        }
+      },
+      {
+        "id": "next_appointment",
+        "title": {
+          "en": "Your next appointment",
+          "nl": "Je volgende afspraak"
+        }
+      },
+      {
+        "id": "tomorrows_schedule",
+        "title": {
+          "en": "Your appointments for tomorrow",
+          "nl": "Je afspraken van morgen"
+        }
+      },
+      {
+        "id": "tomorrows_first_appointment",
+        "title": {
+          "en": "Your first appointment for tomorrow",
+          "nl": "Je eerste afspraak van morgen"
+        }
+      }
+    ]
+  }
+}

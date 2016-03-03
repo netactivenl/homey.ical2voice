@@ -1,0 +1,14 @@
+{
+  "name": "nl.netactive.homey.ical2voice",
+  "version": "0.1.0",
+  "description": "iCalendar to Voice",
+  "main": "app.js",
+  "author": {
+    "name": "Net@ctive",
+    "email": ""
+  },
+  "dependencies": {
+    "ical": "^0.4.0",
+    "moment": "^2.11.2"
+  }
+}

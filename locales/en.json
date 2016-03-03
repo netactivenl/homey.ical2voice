@@ -1,0 +1,27 @@
+{
+  "moment_locale": "en",
+  "settings": {
+    "intro": "Enter a name and the URL of your iCal calendars here.",
+    "title": "iCalendar to Voice - Settings",
+    "calendar_name": "Calendar Name",
+    "calendar_url": "iCal URL",
+    "not_saved": "Settings not saved",
+    "add_calendar": "Add Calendar",
+    "save": "Save",
+    "saved": "Settings saved"
+  },
+  "no_ical_calendars_configured": "No iCal calendars configured in settings.",
+  "speech_next_appointment": "Your next appointment is {0}",
+  "speech_no_appointments_today": "You have no appointments today",
+  "speech_one_appointment_today": "You have one appointment today",
+  "speech_multiple_appointments_today": "You have {0} appointments today",
+  "speech_no_appointments_tomorrow": "You have no appointments tomorrow",
+  "speech_one_appointment_tomorrow": "You have one appointment tomorrow",
+  "speech_multiple_appointments_tomorrow": "You have {0} appointments tomorrow",
+  "speech_no_more_appointments_today": "You have no more appointments today",
+  "speech_one_more_appointment_today": "You have one more appointment today",
+  "speech_multiple_appointments_remaining_today": "You have {0} more appointments today",
+  "speech_no_appointments": "Your calendar is empty",
+  "speech_tomorrows_first_appointment": "Tomorrow your first appointment is at {0}",
+  "speech_appointment_at": "{0} at {1}"
+}
