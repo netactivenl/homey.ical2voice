@@ -7,22 +7,22 @@ After the app is installed, you have access to its settings through the Settings
 
 ### 2. Setup your calendars
 On your Homey's interface go to "Settings". Select the iCalendar to Voice App. Add your calendars by specifying a name and the link (URL) to your hosted calendar file.
-![](https://github.com/netactivenl/nl.netactive.homey.ical2voice.njsproj/raw/master/assets/images/settings.png)
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings.png)
 
 You can find the link to your Google Calendar through the following steps:
 
 1. Open Google Calendar and go to Settings:
-![](https://github.com/netactivenl/nl.netactive.homey.ical2voice.njsproj/raw/master/assets/images/settings_menu.png)
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings_menu.png)
 
 2. Then go to the Calendars tab:
-![](https://github.com/netactivenl/nl.netactive.homey.ical2voice.njsproj/raw/master/assets/images/calendar_settings.png)
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/calendar_settings.png)
 
 3. Finally right click the green ICAL button and get the Private Address of your calendar by copying the address:
-![](https://github.com/netactivenl/nl.netactive.homey.ical2voice.njsproj/raw/master/assets/images/ical.png)
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/ical.png)
 
 ### 3. Create a flow using one of the iCalendar to Voice cards
 Drag iCalendar to Voice from the Apps list in the sidebar into the "...then" column of your flow and select the card you need. 
-![](https://github.com/netactivenl/nl.netactive.homey.ical2voice.njsproj/raw/master/assets/images/example_flow.png)
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow.png)
 
 ## Next release
 
