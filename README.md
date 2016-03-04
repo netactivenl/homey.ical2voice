@@ -15,10 +15,10 @@ You can find the link to your Google Calendar through the following steps:
 1. Open Google Calendar and go to Settings:
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings_menu.png)
 
-2. Then go to the Calendars tab:
+2. Then go to the Calendars tab and click the calendar you want:
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/calendar_settings.png)
 
-3. Finally right click the green ICAL button and get the Private Address of your calendar by copying the address:
+3. Right click the green ICAL button and get the Private Address of your calendar by copying the address:
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/ical.png)
 
 ### 3. Create a flow using one of the iCalendar to Voice cards
