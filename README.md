@@ -9,6 +9,7 @@ After the app is installed, you have access to its settings through the Settings
 On your Homey's interface go to "Settings". Select the iCalendar to Voice App. Add your calendars by specifying a name and the link (URL) to your hosted calendar file.
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings.png)
 
+#### 2.1 Google Calendars
 You can find the link to your Google Calendar through the following steps:
 
 1. Open Google Calendar and go to Settings:
