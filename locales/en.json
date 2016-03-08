@@ -1,12 +1,17 @@
 {
   "moment_locale": "en",
   "settings": {
-    "intro": "Enter a name and the URL of your iCal calendars here.",
     "title": "iCalendar to Voice - Settings",
-    "calendar_name": "Calendar Name",
-    "calendar_url": "iCal URL",
+    "calendars": {
+      "legend": "Calendars",
+      "intro": "Enter a name and the URL of your iCal calendars here.",
+      "calendar_name": "Calendar Name",
+      "calendar_url": "iCal URL",
+      "add": "Add Calendar"
+    },
+    "legend_settings": "General Settings",
+    "refresh_interval_in_minutes": "Refresh interval in minutes",
     "not_saved": "Settings not saved",
-    "add_calendar": "Add Calendar",
     "save": "Save",
     "saved": "Settings saved"
   },

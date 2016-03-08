@@ -22,16 +22,21 @@ You can find the link to your Google Calendar through the following steps:
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/ical.png)
 
 ### 3. Create a flow using one of the iCalendar to Voice cards
-Drag iCalendar to Voice from the Apps list in the sidebar into the "...then" column of your flow and select the card you need. 
+Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or "...then" column of your flow and select the card you need. 
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow.png)
+Or
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow2.png)
 
 ## Next release
 
-Nothing planned yet.
+* Nothing planned yet.
 
 ## Release history
 
-### v0.1.0 (submitted, awaiting approval)
+### v0.2.0 (submitted, awaiting approval)
+* Added trigger flow card for next appointment.
+
+### v0.1.0 (current)
 * Added flow card to announce your next appointment.
 * Added flow card to announce your schedule for today.
 * Added flow card to announce your remaining schedule for today.

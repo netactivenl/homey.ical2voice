@@ -6,20 +6,38 @@
 </head>
 <body>
     <h1 data-i18n="settings.title"></h1>
-    <p data-i18n="settings.intro"></p>
 
     <fieldset>
-        <legend>iCalendars</legend>
+        <legend><span data-i18n="settings.calendars.legend"></span></legend>
+        <p data-i18n="settings.calendars.intro"></p>
         <div class="field row">
-            <label style="width: 260px;"><span data-i18n="settings.calendar_name"></span></label>
-            <label><span data-i18n="settings.calendar_url"></span></label>
+            <label style="width: 260px;"><span data-i18n="settings.calendars.calendar_name"></span></label>
+            <label><span data-i18n="settings.calendars.calendar_url"></span></label>
         </div>
         <div class="field row new_calendar">
-            <input class="calendar_name" name="calendar_names[]" type="text" value="" />
-            <input class="calendar_url" name="calendar_urls[]" type="text" value="" />
+            <input class="calendar_name" name="calendar_names[]" type="text" value=""/>
+            <input class="calendar_url" name="calendar_urls[]" type="text" value=""/>
         </div>
         <div class="field row add_calendar">
-            <button id="add" class="right" data-i18n="settings.add_calendar" onclick="addCalendar()"></button>
+            <button id="add" class="right" data-i18n="settings.calendars.add" onclick="addCalendar()"></button>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend><span data-i18n="settings.legend_settings"></span></legend>
+        <div class="field row">
+            <label style="width: 260px;"><span data-i18n="settings.refresh_interval_in_minutes"></span></label>
+            <select id="calendar_refresh_interval">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="60">60</option>
+                <option value="120">120</option>
+            </select>
         </div>
     </fieldset>
 
@@ -35,6 +53,7 @@
 
             // Fill input with already stored settings.
             Homey.get("calendars", function (err, calendars) {
+                //Homey.log(calendars);
                 if (calendars) {
                     for (var i = 0; i < calendars.length; i++) {
                         var calendar = calendars[i];
@@ -45,6 +64,10 @@
                         newCal.insertBefore(".new_calendar");
                     }
                 }
+            });
+
+            Homey.get("calendar_refresh_interval", function(err, intervalInMinutes) {
+                $("#calendar_refresh_interval").val(intervalInMinutes || 5);
             });
         }
 
@@ -69,6 +92,7 @@
                 return $(elem).val();
             }).get();
 
+            var settings = {};
             var calendars = [];
             for (var i = 0; i < calendarUrls.length; i++) {
                 if (calendarNames[i].length > 0 && calendarUrls[i].length > 0) {
@@ -76,7 +100,12 @@
                 }
             }
 
-            Homey.api("PUT", "/settings/", calendars, function (err, success) {
+            var refreshIntervalInMinutes = $("#calendar_refresh_interval").val();
+
+            settings.calendars = calendars;
+            settings.refreshIntervalInMinutes = refreshIntervalInMinutes;
+
+            Homey.api("PUT", "/settings/", settings, function (err, success) {
                 if (success) {
                     console.log("Settings saved successfull.");
 
@@ -85,6 +114,7 @@
 
                     // Store settings for the long term.
                     Homey.set("calendars", calendars);
+                    Homey.set("calendar_refresh_interval", refreshIntervalInMinutes);
                 } else {
                     console.log("Saving settings failed.");
 

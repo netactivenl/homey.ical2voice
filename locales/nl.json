@@ -1,12 +1,17 @@
 {
   "moment_locale": "nl",
   "settings": {
-    "intro": "Voer een naam en de URL van je iCal kalenders hier in.",
     "title": "iCalendar to Voice - Instellingen",
-    "calendar_name": "Naam Kalender",
-    "calendar_url": "iCal URL",
+    "calendars": {
+      "legend": "Kalenders",
+      "intro": "Voer een naam en de URL van je iCal kalenders hier in.",
+      "calendar_name": "Naam Kalender",
+      "calendar_url": "iCal URL",
+      "add": "Kalender Toevoegen"
+    },
+    "legend_settings": "Algemene Instellingen",
+    "refresh_interval_in_minutes": "Verversingsfrequentie in minuten",
     "not_saved": "Instellingen niet opgeslagen",
-    "add_calendar": "Kalender Toevoegen",
     "save": "Opslaan",
     "saved": "Instellingen opgeslagen"
   },

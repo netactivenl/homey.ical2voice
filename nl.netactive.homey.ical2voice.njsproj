@@ -259,6 +259,7 @@
     <Content Include="app.json" />
     <Content Include="assets\icon.svg" />
     <Content Include="assets\images\calendar_settings.png" />
+    <Content Include="assets\images\example_flow2.png" />
     <Content Include="assets\images\example_flow.png" />
     <Content Include="assets\images\ical.png" />
     <Content Include="assets\images\large.png" />

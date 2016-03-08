@@ -1,6 +1,6 @@
 {
   "name": "nl.netactive.homey.ical2voice",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "iCalendar to Voice",
   "main": "app.js",
   "author": {

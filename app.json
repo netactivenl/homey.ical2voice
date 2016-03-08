@@ -1,6 +1,6 @@
 {
   "id": "nl.netactive.homey.ical2voice",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "compatibility": "0.x || 1.x",
   "name": {
     "en": "iCalendar to Voice",
@@ -8,8 +8,8 @@
   },
   "category": [ "internet" ],
   "description": {
-    "en": "This app adds flow cards that enable Homey to announce your (iCal) appointments",
-    "nl": "Deze app voegt flow kaarten toe die Homey in staat stellen je (iCal) afspraken aan te kondigen"
+    "en": "This app adds flow cards that enable Homey to announce your (iCal) appointments and emit triggers based on your appointments.",
+    "nl": "Deze app voegt flow kaarten toe die Homey in staat stellen je (iCal) afspraken aan te kondigen en triggers af te vuren o.b.v. je afspraken."
   },
   "author": {
     "name": "Net@ctive"
@@ -32,6 +32,71 @@
   ],
   "speech": [ ],
   "flow": {
+    "triggers": [
+      {
+        "id": "next_appointment_in",
+        "title": {
+          "en": "Next appointment in...",
+          "nl": "Volgende afspraak over..."
+        },
+        "tokens": [
+          {
+            "name": "calendar",
+            "title": {
+              "en": "calendar",
+              "nl": "kalender"
+            }
+          },
+          {
+            "name": "date",
+            "title": {
+              "en": "date",
+              "nl": "datum"
+            }
+          },
+          {
+            "name": "time",
+            "title": {
+              "en": "time",
+              "nl": "tijd"
+            }
+          },
+          {
+            "name": "summary",
+            "title": {
+              "en": "appointment",
+              "nl": "afspraak"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "timespan_number",
+            "type": "number"
+          },
+          {
+            "name": "timespan_unit",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "minutes",
+                "label": {
+                  "en": "Minutes",
+                  "nl": "Minuten"
+                }
+              },
+              {
+                "id": "hours",
+                "label": {
+                  "en": "Hours",
+                  "nl": "Uren"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
     "actions": [
       {
         "id": "todays_schedule",
