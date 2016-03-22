@@ -66,12 +66,12 @@ Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or 
 
 ## Release history
 
-### v0.1.3 (submitted, awaiting approval)
+### v0.1.3 (current)
 * Added support for yearly, monthly, weekly and daily recurring appointments.
 * Added location to next appointment trigger flow card.
 * Fixed announcement of multiple events for today's schedule, today's remaining schedule and tomorrow's schedule.
 
-### v0.1.2 (current)
+### v0.1.2
 * Added trigger flow card for next appointment.
 
 ### v0.1.0
