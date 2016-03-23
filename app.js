@@ -26,16 +26,142 @@ var self = module.exports = {
         Homey.manager("flow").on("action.next_appointment", self.next_appointment_action);
         Homey.manager("flow").on("action.tomorrows_schedule", self.tomorrows_schedule_action);
         Homey.manager("flow").on("action.tomorrows_first_appointment", self.tomorrows_first_appointment_action);
+        Homey.manager("flow").on("action.weekday_schedule", self.dow_schedule_action);
+
+        // Listen for speech triggers.
+        Homey.manager('speech-input').on('speech', self.speech_in_trigger);
 
         // Update calendars after 2 seconds and every X minutes.
         setTimeout(self.updateCalendars, 2000);
         self.refreshIntervalInMinutes = Homey.manager("settings").get("calendar_refresh_interval") || self.refreshIntervalInMinutes;
         self.updateCalendarsIntervalId = setInterval(self.updateCalendars.bind(this), self.refreshIntervalInMinutes * 60 * 1000);
-        
+
         // Check each calendar's next event every 1 minute.
         setInterval(self.triggerNextEventPerCalendar.bind(this), 60 * 1000);
 
         self.log("Initializing iCalendar to Voice app completed.");
+    },
+    speech_in_trigger: function (speech, callback) {
+
+        self.log(JSON.stringify(speech));
+
+        ///*
+        //`speech` looks something like this:
+
+        //{
+        //    "transcript": "what is the weather tomorrow", (everything Homey has heard after 'OK Homey' until silence)
+        //    "language": "en", // the spoken language
+        //    "triggers": [
+        //        {
+        //            "id": "weather", // this ID corresponds with the ID in your app.json
+        //            "position": 12, // position of first character in the complete sentence
+        //            "text": "weather"
+        //        },
+        //        {
+        //            "id": "tomorrow",
+        //            "position": 20,
+        //            "text": "tomorrow"
+        //        }
+        //    ],
+        //    "zones": [], // list of zone ID's, when found some
+        //    "time": false, // contain a time when a time or date has been found in the sentence
+        //    "agent": "homey:app:com.athom.weather" // your app's URI
+        //}
+        //*/
+
+        // Loop all triggers
+        var triggers = [];
+        speech.triggers.forEach(function(trigger) {
+            triggers.push(trigger.id);
+        });
+        
+        // Draw conclusions based on received triggers.
+        if (triggers.indexOf("schedule") >= 0 || triggers.indexOf("calendar") >= 0) {
+            if (triggers.indexOf("today") >= 0) {
+                self.todays_schedule_action(function (err, result) {
+                    // null, true when speech was meant for this app
+                    callback(null, true);
+                });
+            } else {
+                if (triggers.indexOf("tomorrow") >= 0) {
+                    self.tomorrows_schedule_action(function(err, result) {
+                        // null, true when speech was meant for this app
+                        callback(null, true);
+                    });
+                } else {
+                    if (triggers.indexOf("sunday") >= 0) {
+                        self.dow_schedule_action(function(err, result) {
+                            // null, true when speech was meant for this app
+                            callback(null, true);
+                        }, { dow: 0 });
+                    } else {
+                        if (triggers.indexOf("monday") >= 0) {
+                            self.dow_schedule_action(function(err, result) {
+                                // null, true when speech was meant for this app
+                                callback(null, true);
+                            }, { dow: 1 });
+                        } else {
+                            if (triggers.indexOf("tuesday") >= 0) {
+                                self.dow_schedule_action(function(err, result) {
+                                    // null, true when speech was meant for this app
+                                    callback(null, true);
+                                }, { dow: 2 });
+                            } else {
+                                if (triggers.indexOf("wednesday") >= 0) {
+                                    self.dow_schedule_action(function(err, result) {
+                                        // null, true when speech was meant for this app
+                                        callback(null, true);
+                                    }, { dow: 3 });
+                                } else {
+                                    if (triggers.indexOf("thursday") >= 0) {
+                                        self.dow_schedule_action(function(err, result) {
+                                            // null, true when speech was meant for this app
+                                            callback(null, true);
+                                        }, { dow: 4 });
+                                    } else {
+                                        if (triggers.indexOf("friday") >= 0) {
+                                            self.dow_schedule_action(function(err, result) {
+                                                // null, true when speech was meant for this app
+                                                callback(null, true);
+                                            }, { dow: 5 });
+                                        } else {
+                                            if (triggers.indexOf("saturday") >= 0) {
+                                                self.dow_schedule_action(function(err, result) {
+                                                    // null, true when speech was meant for this app
+                                                    callback(null, true);
+                                                }, { dow: 6 });
+                                            } else {
+                                                self.todays_remaining_schedule_action(function(err, result) {
+                                                    // null, true when speech was meant for this app
+                                                    callback(null, true);
+                                                });
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (triggers.indexOf("next_appointment") >= 0) {
+            self.next_appointment_action(function (err, result) {
+                // null, true when speech was meant for this app
+                callback(null, true);
+            });
+        }
+        
+        if (triggers.indexOf("first_appointment") >= 0 && triggers.indexOf("tomorrow") >= 0) {
+            self.tomorrows_first_appointment_action(function (err, result) {
+                // null, true when speech was meant for this app
+                callback(null, true);
+            });
+        }
+
+        // true, null when speech wasn't meant for this app
+        callback(true, null);
     },
     updateCalendars: function() {
         if (self.calendars) {
@@ -50,7 +176,7 @@ var self = module.exports = {
             });
         }
     },
-    triggerNextEventPerCalendar: function () {
+    triggerNextEventPerCalendar: function() {
         self.log("Triggering next event per calendar...");
         if (self.calendars) {
             self.calendars.forEach(function(calendar) {
@@ -115,7 +241,7 @@ var self = module.exports = {
                         self.announceEvent(event);
                     });
                 }
-
+                
                 callback(null, true);
             }
         });
@@ -221,6 +347,35 @@ var self = module.exports = {
             }
         });
     },
+    dow_schedule_action: function (callback, args) {
+        self.log("action.dow_schedule: " + args.dow);
+
+        var dayOffset = moment().startOf("day").day() < parseInt(args.dow) ? parseInt(args.dow) : parseInt(args.dow) + 7;
+        var dow = moment().startOf("day").day(dayOffset);
+
+        self.log(dow.format());
+
+        self.getEventsForDate(dow, function (error, events) {
+            if (error) {
+                callback(error, false);
+            } else {
+                if (events.length === 0) {
+                    self.announce(__("speech_no_appointments_for_dow").replace("{0}", dow.format("dddd")));
+                } else if (events.length === 1) {
+                    self.announce(__("speech_one_appointment_for_dow").replace("{0}", dow.format("dddd")));
+                    self.announceEvent(events[0]);
+                } else {
+                    var sortedEvents = self.sortArray(events, "start");
+                    self.announce(__("speech_multiple_appointments_for_dow").replace("{0}", sortedEvents.length).replace("{1}", dow.format("dddd")));
+                    sortedEvents.forEach(function (event) {
+                        self.announceEvent(event);
+                    });
+                }
+                
+                callback(null, true);
+            }
+        });
+    },
     toLocal: function(dateTime) {
         var localDateTime = moment(dateTime);
         localDateTime.local();
@@ -230,7 +385,7 @@ var self = module.exports = {
         var nextEvent = null;
 
         if (events) {
-            events.forEach(function (event) {
+            events.forEach(function(event) {
                 var eventMoment = self.toLocal(event.departure || event.start);
                 var nextEventMoment = null;
                 if (nextEvent) {
@@ -250,9 +405,7 @@ var self = module.exports = {
                 callback(error, null);
             } else {
                 var eventsForDate = [];
-                
-                events.forEach(function (event) {
-                    // TODO: Add support for recurring events on date!
+                events.forEach(function(event) {
                     if (self.toLocal(event.start).isSame(date, "day")) {
                         eventsForDate.push(event);
                     }
@@ -283,12 +436,11 @@ var self = module.exports = {
             } else {
                 // We return all events since this morning.
                 var today = moment().startOf("day");
-                
+
                 // Clear any previous events in the calendar.
                 if (calendar.events) {
                     calendar.events.length = 0;
-                }
-                else {
+                } else {
                     calendar.events = [];
                 }
 
@@ -351,7 +503,7 @@ var self = module.exports = {
             }
         });
     },
-    setTravelTimeInMinutes: function (event) {
+    setTravelTimeInMinutes: function(event) {
         if (!event.location || event.location.length <= 0) {
             return;
         }
@@ -416,7 +568,7 @@ var self = module.exports = {
             }
 
             //self.log("valid dow: " + JSON.stringify(dow));
-            
+
             var weeklyOccurrences = [];
             var nextWeeklyRecurrence = moment();
             nextWeeklyRecurrence.hour(firstWeeklyOccurrence.hour());
@@ -441,17 +593,17 @@ var self = module.exports = {
             nextDailyRecurrence.hour(firstOccurrence.hour());
             nextDailyRecurrence.minute(firstOccurrence.minute());
             nextDailyRecurrence.second(firstOccurrence.second());
-            
+
             while (nextDailyRecurrence.isSameOrBefore(lastAcceptedOccurrence)) {
                 if (nextDailyRecurrence.isSameOrAfter(now)) {
                     dailyOccurrences.push(nextDailyRecurrence);
                 }
                 nextDailyRecurrence.add(1, "d");
             }
-            
+
             return dailyOccurrences;
         }
-        
+
         // TODO: Add support for hourly recurrences.
         // TODO: Add support for minutely recurrences.
         // TODO: Add support for secondly recurrences.
@@ -465,7 +617,7 @@ var self = module.exports = {
 
         return null;
     },
-    announceEvent: function (event) {
+    announceEvent: function(event) {
         var announcement = __("speech_appointment_at").replace("{0}", event.summary).replace("{1}", self.toLocal(event.start).format("LT"));
         self.announce(announcement);
     },
@@ -475,17 +627,17 @@ var self = module.exports = {
             Homey.manager("speech-output").say(announcement);
         }
     },
-    updateSettings: function (settings, callback) {
+    updateSettings: function(settings, callback) {
         // Update settings.
         self.calendars = settings.calendars;
         self.refreshIntervalInMinutes = parseInt(settings.refreshIntervalInMinutes);
         //self.log("Settings updated: " + JSON.stringify(settings));
-        
+
         // Stop/start calendar updates using new interval.
         if (self.updateCalendarsIntervalId) {
             clearInterval(self.updateCalendarsIntervalId);
         }
-        
+
         // Update calendars after 2 seconds and every X minutes.
         setTimeout(self.updateCalendars, 2000);
         self.updateCalendarsIntervalId = setInterval(self.updateCalendars.bind(this), self.refreshIntervalInMinutes * 60 * 1000);

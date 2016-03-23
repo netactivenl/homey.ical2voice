@@ -1,34 +1,47 @@
 ﻿# iCalendar to Voice
-The iCalendar to Voice App if the missing link between your online (cloud) calendar and Athom's fantastic [Homey](http://www.athom.com) product. 
+The iCalendar to Voice App is the missing link between your online (cloud) calendar and Athom's fantastic [Homey](http://www.athom.com) product.
+This app adds flow cards and voice triggers that enable Homey to announce your (iCal) appointments and emit triggers so you can run flows based on appointments in your calendars.
 
 ## 1. Features
-The iCalendar to Voice App (v0.1.3) enables your Homey to:
+The iCalendar to Voice App enables your Homey to:
 
 1. Trigger flows based on upcoming events in your calendar.
-2. Announce your schedule for today.
+2. Announce your full schedule for today, tomorrow or a specific day of the week.
 3. Announce your remaining schedule for today.
 4. Announce your next appointment.
-5. Announce your schedule for tomorrow.
-6. Announce your first appointment of tomorrow.
+5. Announce your first appointment of tomorrow.
 
 ## 2. Supported Languages
 
-The iCalendar to Voice App supports both English and Dutch. 
+The iCalendar to Voice App currently supports both English and Dutch languages. 
 ***
-Please contact me, if you want to help translate the App to other languages.
+Please contact me, if you want to help translate the iCalendar to Voice App to other languages.
 ***
-## 3. Setup
 
-### 3.1 Install the iCalendar to Voice app
+## 3. Native Voice Triggers (v0.1.4+)
+The iCalendar to Voice App supports native voice triggers. Trigger keywords are in bold.
+
+Try asking: **OK, Homey**:
+
+* What is my **schedule/calendar** like?
+* What is my **schedule/calendar** for **today/tomorrow/sunday/monday/tuesday/wednesday/thursday/friday/saturday**/?
+* What is my **next appointment**?
+* What is my **first appointment** for **tomorrow**?
+
+You can alter the input to your liking, as long as you use the bolded **keywords** in the sentence.
+
+## 4. Setup
+
+### 4.1 Install the iCalendar to Voice app
 On your Homey's interface go to "Setting > Apps" and find and install the iCalendar to Voice app.
 After the app is installed, you have access to its settings through the Settings screen and to the App itself from the Apps list on the Flows screen: iCalendar to Voice.
 
-### 3.2 Configure your calendar(s)
+### 4.2 Configure your calendar(s)
 On your Homey's interface go to "Settings". Select the iCalendar to Voice App. 
 Add your calendar(s) by specifying a name and the link (URL) to your hosted calendar (ICS) file.
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings.png)
 
-#### 3.2.1 Get a Google Calendar URL
+#### 4.2.1 Get a Google Calendar URL
 You can find the link to your Google Calendar through the following steps:
 
 **1. Open Google Calendar and go to Settings:**
@@ -44,18 +57,13 @@ You can find the link to your Google Calendar through the following steps:
 Other ICS calenders should also work. Please let me know if you've tested the App with another online calendar service!
 ***
 
-### 3.3 Create flows
+### 4.3 Create flows
 Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or "...then" column of your flow and select the card you need.
 
-**Ask Homey for your next appointment** 
-![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow.png)
-
-**Let Homey announce your next appointment one minute beforehand**
+**Let Homey announce your next appointment one minute beforehand, when it's between 7 AM and 11 PM**
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow2.png)
 
-## Backlog
-* Add support for native voice triggers.
-* Add support for announcement of the schedule for a specific weekday.
+## 5. Backlog
 * Add support for hourly recurring appointments.
 * Add support for minutely recurring appointments.
 * Add support for secondly recurring appointments.
@@ -64,7 +72,11 @@ Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or 
 * Add support for multiple recurrence cycles per appointment.
 * Add support for exclusions.
 
-## Release history
+## 6. Release history
+
+### v0.1.4 (submitted, awaiting approval)
+* Added support for native voice triggers.
+* Added action flow card to announce your appointments for a specific day of the week.
 
 ### v0.1.3 (current)
 * Added support for yearly, monthly, weekly and daily recurring appointments.

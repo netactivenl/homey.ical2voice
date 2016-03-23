@@ -2,6 +2,7 @@
   "moment_locale": "en",
   "settings": {
     "title": "iCalendar to Voice - Settings",
+    "description": "Enter your calendars here. You can also change the refresh frequency if you like.",
     "calendars": {
       "legend": "Calendars",
       "intro": "Enter a name and the URL of your iCal calendars here.",
@@ -28,5 +29,8 @@
   "speech_multiple_appointments_remaining_today": "You have {0} more appointments today",
   "speech_no_appointments": "Your calendar is empty",
   "speech_tomorrows_first_appointment": "Tomorrow your first appointment is at {0}",
-  "speech_appointment_at": "{0} at {1}"
+  "speech_appointment_at": "{0} at {1}",
+  "speech_no_appointments_for_dow": "You have no appointments on {0}",
+  "speech_one_appointment_for_dow": "You have one appointment on {0}",
+  "speech_multiple_appointments_for_dow": "You have {0} appointments on {1}"
 }

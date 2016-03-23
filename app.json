@@ -1,6 +1,6 @@
 {
   "id": "nl.netactive.homey.ical2voice",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "compatibility": "0.x || 1.x",
   "name": {
     "en": "iCalendar to Voice",
@@ -8,8 +8,8 @@
   },
   "category": [ "internet" ],
   "description": {
-    "en": "This app adds flow cards that enable Homey to announce your (iCal) appointments and emit triggers based on your appointments.",
-    "nl": "Deze app voegt flow kaarten toe die Homey in staat stellen je (iCal) afspraken aan te kondigen en triggers af te vuren o.b.v. je afspraken."
+    "en": "This app adds flow cards and voice triggers that enable Homey to announce your (iCal) appointments and emit triggers so you can run flows based on appointments in your calendars.",
+    "nl": "Deze app voegt flow kaarten en voice triggers toe die Homey in staat stellen je (iCal) afspraken aan te kondigen en triggers af te vuren, zodat je flows kunt starten o.b.v. afspraken in je kalenders."
   },
   "author": {
     "name": "Net@ctive"
@@ -30,7 +30,112 @@
     "homey:manager:speech-output",
     "homey:manager:ledring"
   ],
-  "speech": [ ],
+  "speech": [
+    {
+      "id": "calendar",
+      "importance": 1,
+      "triggers": {
+        "en": [ "calendar" ],
+        "nl": [ "kalender" ]
+      }
+    },
+    {
+      "id": "schedule",
+      "importance": 1,
+      "triggers": {
+        "en": [ "schedule", "planning" ],
+        "nl": [ "agenda", "planning" ]
+      }
+    },
+    {
+      "id": "next_appointment",
+      "importance": 1,
+      "triggers": {
+        "en": [ "next appointment" ],
+        "nl": [ "volgende afspraak" ]
+      }
+    },
+    {
+      "id": "first_appointment",
+      "importance": 1,
+      "triggers": {
+        "en": [ "first appointment" ],
+        "nl": [ "eerste afspraak" ]
+      }
+    },
+    {
+      "id": "today",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "today" ],
+        "nl": [ "vandaag" ]
+      }
+    },
+    {
+      "id": "tomorrow",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "tomorrow" ],
+        "nl": [ "morgen" ]
+      }
+    },
+    {
+      "id": "sunday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "sunday" ],
+        "nl": [ "zondag" ]
+      }
+    },
+    {
+      "id": "monday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "monday" ],
+        "nl": [ "maandag" ]
+      }
+    },
+    {
+      "id": "tuesday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "tuesday" ],
+        "nl": [ "dinsdag" ]
+      }
+    },
+    {
+      "id": "wednesday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "wednesday" ],
+        "nl": [ "woensdag" ]
+      }
+    },
+    {
+      "id": "thursday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "thursday" ],
+        "nl": [ "donderdag" ]
+      }
+    },
+    {
+      "id": "friday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "friday" ],
+        "nl": [ "vrijdag" ]
+      }
+    },
+    {
+      "id": "saturday",
+      "importance": 0.3,
+      "triggers": {
+        "en": [ "saturday" ],
+        "nl": [ "zaterdag" ]
+      }
+    }
+  ],
   "flow": {
     "triggers": [
       {
@@ -139,6 +244,70 @@
           "en": "Your first appointment for tomorrow",
           "nl": "Je eerste afspraak van morgen"
         }
+      },
+      {
+        "id": "weekday_schedule",
+        "title": {
+          "en": "Your appointments on...",
+          "nl": "Je afspraken op..."
+        },
+        "args": [
+          {
+            "name": "dow",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "0",
+                "label": {
+                  "en": "Sunday",
+                  "nl": "Zondag"
+                }
+              },
+              {
+                "id": "1",
+                "label": {
+                  "en": "Monday",
+                  "nl": "Maandag"
+                }
+              },
+              {
+                "id": "2",
+                "label": {
+                  "en": "Tuesday",
+                  "nl": "Dinsdag"
+                }
+              },
+              {
+                "id": "3",
+                "label": {
+                  "en": "Wednesday",
+                  "nl": "Woensdag"
+                }
+              },
+              {
+                "id": "4",
+                "label": {
+                  "en": "Thursday",
+                  "nl": "Donderdag"
+                }
+              },
+              {
+                "id": "5",
+                "label": {
+                  "en": "Friday",
+                  "nl": "Vrijdag"
+                }
+              },
+              {
+                "id": "6",
+                "label": {
+                  "en": "Saturday",
+                  "nl": "Zaterdag"
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   }
