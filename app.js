@@ -181,11 +181,11 @@ var self = module.exports = {
         if (self.calendars) {
             self.calendars.forEach(function(calendar) {
                 var nextEvent = self.getNextEvent(calendar.events);
-
+                self.log("Next event found for calendar " + calendar.name + ": " + nextEvent);
                 if (nextEvent) {
                     var tokens = {
                         calendar: calendar.name,
-                        date: nextEvent.start.format("YYYY-MM-DD"),
+                        date: JSON.stringify(nextEvent.start.format("YYYY-MM-DD")),
                         time: nextEvent.start.format("HH:mm"),
                         summary: nextEvent.summary,
                         location: nextEvent.location
@@ -194,8 +194,15 @@ var self = module.exports = {
                     var state = nextEvent.departure || nextEvent.start;
 
                     //console.log("Next appointment's tokens: " + JSON.stringify(tokens));
+                    //console.log("Next appointment's state: " + JSON.stringify(state));
 
-                    Homey.manager("flow").trigger("next_appointment_in", tokens, state);
+                    Homey.manager("flow")
+                        .trigger("next_appointment_in",
+                            tokens,
+                            state,
+                            function(err, result) {
+                                if (err) return Homey.error(err);
+                            });
                 }
             });
         }
@@ -464,7 +471,8 @@ var self = module.exports = {
 
                             if (occurrences) {
                                 for (var i = 0; i < occurrences.length; i++) {
-                                    (function(e, start) {
+                                    (function (e, start) {
+                                        //self.log(JSON.stringify(start) + " isSameOrAfter " + JSON.stringify(today));
                                         if (start.isSameOrAfter(today)) {
                                             var eventDurationInMilliseconds = moment.utc(e.end).diff(moment.utc(e.start));
                                             var eventDuration = moment.duration(eventDurationInMilliseconds);
@@ -498,7 +506,7 @@ var self = module.exports = {
                     }
                 }
 
-                //self.log(events.length + " events retrieved from ical: " + calendar.url);
+                //self.log(calendar.events.length + " events retrieved from ical: " + calendar.url);
                 callback(null, calendar.events);
             }
         });
