@@ -64,6 +64,7 @@ Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or 
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow2.png)
 
 ## 5. Backlog
+* Fix issue where app falsely reports recurring events.
 * Add support for hourly recurring appointments.
 * Add support for minutely recurring appointments.
 * Add support for secondly recurring appointments.
@@ -73,6 +74,9 @@ Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or 
 * Add support for exclusions.
 
 ## 6. Release history
+
+### v0.9.0 (current)
+* Fixed issue due to internal Homey changes that made all calendar triggers fail.
 
 ### v0.1.4 (submitted, awaiting approval)
 * Added support for native voice triggers.
