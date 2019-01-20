@@ -32,6 +32,7 @@
   <ItemGroup>
     <Compile Include="api.js" />
     <Compile Include="app.js" />
+    <Compile Include="lib\ical2voice.js" />
     <Compile Include="node_modules\asn1\lib\ber\errors.js" />
     <Compile Include="node_modules\asn1\lib\ber\index.js" />
     <Compile Include="node_modules\asn1\lib\ber\reader.js" />
@@ -472,6 +473,7 @@
     <Folder Include="assets\" />
     <Folder Include="assets\images\" />
     <Folder Include="locales\" />
+    <Folder Include="lib\" />
     <Folder Include="node_modules\" />
     <Folder Include="node_modules\.bin\" />
     <Folder Include="node_modules\asn1\" />
