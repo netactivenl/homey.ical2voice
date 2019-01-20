@@ -1,4 +1,4 @@
-﻿# iCalendar to Voice
+﻿# iCalendar to Voice (currently compatible with Homey v1.x, but in the process of an upgrade for v2)
 The iCalendar to Voice App is the missing link between your online (cloud) calendar and Athom's fantastic [Homey](http://www.athom.com) product.
 This app adds flow cards and voice triggers that enable Homey to announce your (iCal) appointments and emit triggers so you can run flows based on appointments in your calendars.
 
