@@ -9,6 +9,9 @@ class iCal2Voice extends Homey.App {
         ical2voice.init(this);
         this.log("Initializing iCalendar to Voice app completed.");
     }
+    updateSettings(args, callback) {
+        ical2voice.updateSettings(args, callback);
+    }
 }
 
 module.exports = iCal2Voice;
