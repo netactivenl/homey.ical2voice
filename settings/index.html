@@ -4,11 +4,65 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
     <script type="text/javascript" src="/manager/webserver/assets/js/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
     <h1 data-i18n="settings.title"></h1>
+        
+    <!--<form>-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span data-i18n="settings.calendars.legend"></span></h3>
+            </div>
+            <div class="panel-body">
+                <p data-i18n="settings.calendars.intro"></p>
+                <div class="new_calendar">
+                    <div class="form-group">
+                        <label><span data-i18n="settings.calendars.calendar_name"></span></label>
+                        <input class="form-control calendar_name" name="calendar_names[]" type="text" value="" />
+                    </div>
+                    <div class="form-group">
+                        <label><span data-i18n="settings.calendars.calendar_url"></span></label>
+                        <input class="form-control calendar_url" name="calendar_urls[]" type="text" value="" />
+                    </div>
+                </div>
+                <br />
+                <div class="add_calendar">
+                    <button id="add" class="right hidden" data-i18n="settings.calendars.add" onclick="addCalendar()"></button>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <br />
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span data-i18n="settings.legend_settings"></span></h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label><span data-i18n="settings.refresh_interval_in_minutes"></span></label>
+                    <select id="calendar_refresh_interval" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="60">60</option>
+                        <option value="120">120</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <br />
+        <button id="save" class="right" data-i18n="settings.save" onclick="saveSettings()"></button>
+    <!--</form>-->
 
-    <fieldset>
+    <!--<fieldset>
         <legend><span data-i18n="settings.calendars.legend"></span></legend>
         <p data-i18n="settings.calendars.intro"></p>
         <div class="field row">
@@ -22,9 +76,9 @@
         <div class="field row add_calendar">
             <button id="add" class="right" data-i18n="settings.calendars.add" onclick="addCalendar()"></button>
         </div>
-    </fieldset>
+    </fieldset>-->
 
-    <fieldset>
+    <!--<fieldset>
         <legend><span data-i18n="settings.legend_settings"></span></legend>
         <div class="field row">
             <label style="width: 260px;"><span data-i18n="settings.refresh_interval_in_minutes"></span></label>
@@ -40,17 +94,12 @@
                 <option value="120">120</option>
             </select>
         </div>
-    </fieldset>
-
-    <button id="save" class="right" data-i18n="settings.save" onclick="saveSettings()"></button>
+    </fieldset>-->
 
     <script type="text/javascript">
         function onHomeyReady() {
             // We're ready!
             Homey.ready();
-
-            // Hide some elements initially.
-            $("#row-auto-discovered").hide();
 
             // Fill input with already stored settings.
             Homey.get("calendars", function (err, calendars) {
@@ -108,14 +157,10 @@
 
             Homey.api("PUT", "/settings/", settings, function (err, success) {
                 if (success) {
-                    console.log("Settings saved successfull.");
+                    console.log("Settings saved successfully.");
 
                     // Display successful update of settings.
                     setSaveButton("green", "white", __("settings.saved"));
-
-                    // Store settings for the long term.
-                    Homey.set("calendars", calendars);
-                    Homey.set("calendar_refresh_interval", refreshIntervalInMinutes);
                 } else {
                     console.log("Saving settings failed.");
 

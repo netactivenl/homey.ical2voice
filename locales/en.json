@@ -5,7 +5,7 @@
     "description": "Enter your calendars here. You can also change the refresh frequency if you like.",
     "calendars": {
       "legend": "Calendars",
-      "intro": "Enter a name and the URL of your iCal calendars here.",
+      "intro": "Enter a name and the URL of your iCal calendar(s):",
       "calendar_name": "Calendar Name",
       "calendar_url": "iCal URL",
       "add": "Add Calendar"

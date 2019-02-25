@@ -12,6 +12,9 @@ class iCal2Voice extends Homey.App {
     updateSettings(args, callback) {
         ical2voice.updateSettings(args, callback);
     }
+    removeCalendar(args, callback) {
+        ical2voice.removeCalendar(args, callback);
+    }
 }
 
 module.exports = iCal2Voice;

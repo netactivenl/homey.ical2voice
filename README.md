@@ -1,4 +1,5 @@
 ﻿# iCalendar to Voice
+[<img align="right" src="https://github.com/netactivenl/com.logitech.harmony.hub/raw/master/assets/images/donate.png">](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4XUDMSVD2EZ3J)
 The iCalendar to Voice App is the missing link between your online (cloud) calendar and Athom's fantastic [Homey](http://www.athom.com) product.
 This app adds flow cards and voice triggers that enable Homey to announce your (iCal) appointments and emit triggers so you can run flows based on appointments in your calendars.
 
