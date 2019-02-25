@@ -1,4 +1,5 @@
-﻿# iCalendar to Voice (currently compatible with Homey v1.x, but in the process of an upgrade for v2)
+﻿# iCalendar to Voice (current beta is compatible with Homey v2.x)
+[<img align="right" src="https://github.com/netactivenl/com.logitech.harmony.hub/raw/master/assets/images/donate.png">](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4XUDMSVD2EZ3J)
 The iCalendar to Voice App is the missing link between your online (cloud) calendar and Athom's fantastic [Homey](http://www.athom.com) product.
 This app adds flow cards and voice triggers that enable Homey to announce your (iCal) appointments and emit triggers so you can run flows based on appointments in your calendars.
 
@@ -33,11 +34,11 @@ You can alter the input to your liking, as long as you use the bolded **keywords
 ## 4. Setup
 
 ### 4.1 Install the iCalendar to Voice app
-On your Homey's interface go to "Setting > Apps" and find and install the iCalendar to Voice app.
-After the app is installed, you have access to its settings through the Settings screen and to the App itself from the Apps list on the Flows screen: iCalendar to Voice.
+On your Homey's interface go to "Apps". Hit the + sign in the top right corner. Then find and install the iCalendar to Voice app.
+After the app is installed, you have access to its settings through the App's Settings screen and to the App itself from the Apps list on the Flows screen: iCalendar to Voice.
 
 ### 4.2 Configure your calendar(s)
-On your Homey's interface go to "Settings". Select the iCalendar to Voice App. 
+On your Homey's interface go to "Apps" and click "iCalendar to Voice". Then click "Configure App". 
 Add your calendar(s) by specifying a name and the link (URL) to your hosted calendar (ICS) file.
 ![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/settings.png)
 
@@ -58,22 +59,24 @@ Other ICS calenders should also work. Please let me know if you've tested the Ap
 ***
 
 ### 4.3 Create flows
-Drag iCalendar to Voice from the Apps list in the sidebar into the "when..." or "...then" column of your flow and select the card you need.
+Add iCalendar to Voice from the Apps list to the "when..." or "...then" column of your flow and select the card you need.
 
-**Let Homey announce your next appointment one minute beforehand, when it's between 7 AM and 11 PM**
-![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow2.png)
+**Let Homey announce your next appointment 30 minutes beforehand**
+![](https://github.com/netactivenl/homey.ical2voice/raw/master/assets/images/example_flow3.png)
 
 ## 5. Backlog
-* Fix issue where app falsely reports recurring events.
 * Add support for hourly recurring appointments.
 * Add support for minutely recurring appointments.
 * Add support for secondly recurring appointments.
-* Add support for larger recurrence intervals (now 1 is assumed for each event).
-* Add support for specific number of recurrences.
 * Add support for multiple recurrence cycles per appointment.
 * Add support for exclusions.
 
 ## 6. Release history
+
+### v1.0.0 (current)
+* Fixed issue where app falsely reports recurring events.
+* Added support for larger recurrence intervals.
+* Added support for specific number of recurrences.
 
 ### v0.9.0 (current)
 * Fixed issue due to internal Homey changes that made all calendar triggers fail.

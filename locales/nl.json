@@ -5,7 +5,7 @@
     "description": "Voer hier je kalenders in. Pas eventueel de verversingsfrequentie aan.",
     "calendars": {
       "legend": "Kalenders",
-      "intro": "Voer een naam en de URL van je iCal kalenders hier in.",
+      "intro": "Voer een naam en de URL van je iCal kalender(s) in:",
       "calendar_name": "Naam Kalender",
       "calendar_url": "iCal URL",
       "add": "Kalender Toevoegen"
