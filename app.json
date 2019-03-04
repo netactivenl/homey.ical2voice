@@ -23,6 +23,13 @@
       }
     ]
   },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "paypal.me/netactive"
+      }
+    }
+  },
   "bugs": {
     "url": "https://github.com/netactivenl/homey.ical2voice/issues"
   },
