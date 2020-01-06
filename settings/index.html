@@ -97,92 +97,92 @@
     </fieldset>-->
 
     <script type="text/javascript">
-        function onHomeyReady() {
+        function onHomeyReady(Homey) {
             // We're ready!
             Homey.ready();
 
-            // Fill input with already stored settings.
-            Homey.get("calendars", function (err, calendars) {
-                //Homey.log(calendars);
-                if (calendars) {
-                    for (var i = 0; i < calendars.length; i++) {
-                        var calendar = calendars[i];
-                        var newCal = $(".new_calendar").clone();
-                        newCal.removeClass("new_calendar");
-                        $(".calendar_name", newCal).val(calendar.name);
-                        $(".calendar_url", newCal).val(calendar.url);
-                        newCal.insertBefore(".new_calendar");
-                    }
-                }
-            });
+            // // Fill input with already stored settings.
+            // Homey.get("calendars", function (err, calendars) {
+            //     //Homey.log(calendars);
+            //     if (calendars) {
+            //         for (var i = 0; i < calendars.length; i++) {
+            //             var calendar = calendars[i];
+            //             var newCal = $(".new_calendar").clone();
+            //             newCal.removeClass("new_calendar");
+            //             $(".calendar_name", newCal).val(calendar.name);
+            //             $(".calendar_url", newCal).val(calendar.url);
+            //             newCal.insertBefore(".new_calendar");
+            //         }
+            //     }
+            // });
+            //
+            // Homey.get("calendar_refresh_interval", function (err, intervalInMinutes) {
+            //     $("#calendar_refresh_interval").val(intervalInMinutes || 5);
+            // });
 
-            Homey.get("calendar_refresh_interval", function(err, intervalInMinutes) {
-                $("#calendar_refresh_interval").val(intervalInMinutes || 5);
-            });
-        }
-
-        function addCalendar() {
-            var newCal = $(".new_calendar").clone();
-            newCal.removeClass("new_calendar");
-            $(".calendar_name", newCal).val("");
-            $(".calendar_url", newCal).val("");
-            newCal.insertBefore(".add_calendar");
-            $(".calendar_name", newCal).focus();
-        }
-
-        function saveSettings() {
-            // Update running app with new settings (PUT to api).
-            console.log("Saving settings...");
-
-            var calendarNames = $('input[name^=calendar_names]').map(function (idx, elem) {
-                return $(elem).val();
-            }).get();
-
-            var calendarUrls = $('input[name^=calendar_urls]').map(function (idx, elem) {
-                return $(elem).val();
-            }).get();
-
-            var settings = {};
-            var calendars = [];
-            for (var i = 0; i < calendarUrls.length; i++) {
-                if (calendarNames[i].length > 0 && calendarUrls[i].length > 0) {
-                    calendars.push({ name: calendarNames[i], url: calendarUrls[i] });
-                }
+            function addCalendar() {
+                var newCal = $(".new_calendar").clone();
+                newCal.removeClass("new_calendar");
+                $(".calendar_name", newCal).val("");
+                $(".calendar_url", newCal).val("");
+                newCal.insertBefore(".add_calendar");
+                $(".calendar_name", newCal).focus();
             }
 
-            var refreshIntervalInMinutes = $("#calendar_refresh_interval").val();
+            function saveSettings() {
+                // Update running app with new settings (PUT to api).
+                console.log("Saving settings...");
 
-            settings.calendars = calendars;
-            settings.refreshIntervalInMinutes = refreshIntervalInMinutes;
+                var calendarNames = $('input[name^=calendar_names]').map(function (idx, elem) {
+                    return $(elem).val();
+                }).get();
 
-            Homey.api("PUT", "/settings/", settings, function (err, success) {
-                if (success) {
-                    console.log("Settings saved successfully.");
+                var calendarUrls = $('input[name^=calendar_urls]').map(function (idx, elem) {
+                    return $(elem).val();
+                }).get();
 
-                    // Display successful update of settings.
-                    setSaveButton("green", "white", __("settings.saved"));
-                } else {
-                    console.log("Saving settings failed.");
-
-                    // Display failed registration
-                    setSaveButton("lightcoral", "black", __("settings.not_saved"));
+                var settings = {};
+                var calendars = [];
+                for (var i = 0; i < calendarUrls.length; i++) {
+                    if (calendarNames[i].length > 0 && calendarUrls[i].length > 0) {
+                        calendars.push({name: calendarNames[i], url: calendarUrls[i]});
+                    }
                 }
 
-                resetSaveButton();
-            });
-        }
+                var refreshIntervalInMinutes = $("#calendar_refresh_interval").val();
 
-        function resetSaveButton() {
-            setTimeout(function() {
-                setSaveButton("", "black", __("settings.save"));
-            }, 3000);
-        }
+                settings.calendars = calendars;
+                settings.refreshIntervalInMinutes = refreshIntervalInMinutes;
 
-        function setSaveButton(backgroundColor, color, innerHtml) {
-            var btnSave = document.getElementById("save");
-            btnSave.style["background-color"] = backgroundColor;
-            btnSave.style["color"] = color;
-            btnSave.innerHTML = innerHtml;
+                Homey.api("PUT", "/settings/", settings, function (err, success) {
+                    if (success) {
+                        console.log("Settings saved successfully.");
+
+                        // Display successful update of settings.
+                        setSaveButton("green", "white", __("settings.saved"));
+                    } else {
+                        console.log("Saving settings failed.");
+
+                        // Display failed registration
+                        setSaveButton("lightcoral", "black", __("settings.not_saved"));
+                    }
+
+                    resetSaveButton();
+                });
+            }
+
+            function resetSaveButton() {
+                setTimeout(function () {
+                    setSaveButton("", "black", __("settings.save"));
+                }, 3000);
+            }
+
+            function setSaveButton(backgroundColor, color, innerHtml) {
+                var btnSave = document.getElementById("save");
+                btnSave.style["background-color"] = backgroundColor;
+                btnSave.style["color"] = color;
+                btnSave.innerHTML = innerHtml;
+            }
         }
     </script>
 </body>
