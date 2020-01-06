@@ -8,8 +8,9 @@
     "email": ""
   },
   "dependencies": {
+    "async": "^3.1.0",
     "bootstrap": "^3.4.1",
-    "ical": "^0.5.0",
+    "ical": "^0.6.0",
     "moment": "^2.24.0"
   }
 }
